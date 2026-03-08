@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChatBot Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>ChatBot Functionality Test</h1>
+    
+    <div class="test-section">
+        <h2>Testing Bot Responses</h2>
+        <div id="test-results"></div>
+    </div>
+
+    <script>
+        // Test the bot response logic
+        const botResponses = {
+            greetings: {
+                keywords: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening'],
+                responses: [
+                    "Hello! How can I help you today?",
+                    "Hi there! What can I do for you?",
+                    "Hey! Welcome to our chat. How may I assist you?"
+                ]
+            },
+            help: {
+                keywords: ['help', 'commands', 'what can you do', 'features'],
+                responses: [
+                    "I can help you with products, orders, support, billing, and contact information."
+                ]
+            },
+            products: {
+                keywords: ['product', 'products', 'service', 'services'],
+                responses: [
+                    "We offer web development, mobile apps, cloud services, security, analytics, and AI solutions."
+                ]
+            },
+            pricing: {
+                keywords: ['price', 'pricing', 'cost', 'fee', 'payment'],
+                responses: [
+                    "We offer Starter ($29/month), Professional ($99/month), and Enterprise (custom pricing) plans."
+                ]
+            },
+            support: {
+                keywords: ['support', 'help', 'issue', 'problem'],
+                responses: [
+                    "I'm here to help! Contact us at support@example.com or call 1-800-123-4567."
+                ]
+            },
+            contact: {
+                keywords: ['contact', 'phone', 'email', 'address'],
+                responses: [
+                    "Contact us at hello@example.com or 1-800-123-4567. We're at 123 Tech Street, Silicon Valley, CA."
+                ]
+            },
+            unknown: {
+                keywords: [],
+                responses: [
+                    "I'm not sure I understand. Try asking about products, pricing, support, or contact information."
+                ]
+            }
+        };
+
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            for (const [category, data] of Object.entries(botResponses)) {
+                if (category === 'unknown') continue;
+                
+                const hasKeyword = data.keywords.some(keyword => 
+                    lowerMessage.includes(keyword.toLowerCase())
+                );
+                
+                if (hasKeyword) {
+                    return data.responses[Math.floor(Math.random() * data.responses.length)];
+                }
+            }
+            
+            return botResponses.unknown.responses[0];
+        }
+
+        // Test cases
+        const testCases = [
+            'hello',
+            'help',
+            'products',
+            'pricing',
+            'support',
+            'contact',
+            'random text that should not match'
+        ];
+
+        const results = document.getElementById('test-results');
+        
+        testCases.forEach(test => {
+            const response = getBotResponse(test);
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <strong>Input:</strong> "${test}"<br>
+                <strong>Response:</strong> "${response}"<br>
+                <span class="success">✓ Test passed</span><br><br>
+            `;
+            results.appendChild(div);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Form Suite - Portfolio Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-primary text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="h2 mb-0"><i class="fas fa-clipboard-list me-2"></i>Master Form Suite</h1>
+                    <p class="mb-0 opacity-75">Advanced multi-step forms with validation</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-outline-light active" onclick="showForm('get-matched')">Get Matched</button>
+                        <button class="btn btn-outline-light" onclick="showForm('contact')">Contact</button>
+                        <button class="btn btn-outline-light" onclick="showForm('auth')">Auth</button>
+                        <button class="btn btn-outline-light" onclick="showForm('newsletter')">Newsletter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- Get Matched Form -->
+        <div id="get-matched-form" class="form-container active">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <h2 class="text-center mb-4">Get Matched with Perfect Solutions</h2>
+                            
+                            <!-- Progress Bar -->
+                            <div class="progress mb-4" style="height: 6px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 33%"></div>
+                            </div>
+                            
+                            <!-- Step Indicators -->
+                            <div class="step-indicators d-flex justify-content-between mb-4">
+                                <div class="step active">
+                                    <div class="step-circle">1</div>
+                                    <small>Basic Info</small>
+                                </div>
+                                <div class="step">
+                                    <div class="step-circle">2</div>
+                                    <small>Preferences</small>
+                                </div>
+                                <div class="step">
+                                    <div class="step-circle">3</div>
+                                    <small>Requirements</small>
+                                </div>
+                            </div>
+
+                            <!-- Form Steps -->
+                            <form id="get-matched-form-element">
+                                <!-- Step 1: Basic Info -->
+                                <div class="form-step active" data-step="1">
+                                    <h4 class="mb-3">Tell us about yourself</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="firstName" class="form-label">First Name *</label>
+                                            <input type="text" class="form-control" id="firstName" required>
+                                            <div class="invalid-feedback">Please enter your first name</div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="lastName" class="form-label">Last Name *</label>
+                                            <input type="text" class="form-control" id="lastName" required>
+                                            <div class="invalid-feedback">Please enter your last name</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                        <div class="invalid-feedback">Please enter a valid email address</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" placeholder="+1 (555) 123-4567">
+                                        <div class="invalid-feedback">Please enter a valid phone number</div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button type="button" class="btn btn-secondary" disabled>Previous</button>
+                                        <button type="button" class="btn btn-primary" onclick="nextStep('get-matched')">Next Step</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2: Preferences -->
+                                <div class="form-step" data-step="2">
+                                    <h4 class="mb-3">Your preferences</h4>
+                                    <div class="mb-3">
+                                        <label class="form-label">Industry *</label>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="industry" id="tech" value="tech" required>
+                                                    <label class="form-check-label" for="tech">Technology</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="industry" id="healthcare" value="healthcare">
+                                                    <label class="form-check-label" for="healthcare">Healthcare</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="industry" id="finance" value="finance">
+                                                    <label class="form-check-label" for="finance">Finance</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="budget" class="form-label">Budget Range *</label>
+                                        <select class="form-select" id="budget" required>
+                                            <option value="">Select budget range</option>
+                                            <option value="0-1000">$0 - $1,000</option>
+                                            <option value="1000-5000">$1,000 - $5,000</option>
+                                            <option value="5000-10000">$5,000 - $10,000</option>
+                                            <option value="10000+">$10,000+</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select a budget range</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Features You Need *</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="analytics" value="analytics">
+                                                    <label class="form-check-label" for="analytics">Analytics</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="automation" value="automation">
+                                                    <label class="form-check-label" for="automation">Automation</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="integration" value="integration">
+                                                    <label class="form-check-label" for="integration">Integration</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="support" value="support">
+                                                    <label class="form-check-label" for="support">24/7 Support</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button type="button" class="btn btn-secondary" onclick="previousStep('get-matched')">Previous</button>
+                                        <button type="button" class="btn btn-primary" onclick="nextStep('get-matched')">Next Step</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3: Requirements -->
+                                <div class="form-step" data-step="3">
+                                    <h4 class="mb-3">Final requirements</h4>
+                                    <div class="mb-3">
+                                        <label for="timeline" class="form-label">Project Timeline *</label>
+                                        <select class="form-select" id="timeline" required>
+                                            <option value="">Select timeline</option>
+                                            <option value="urgent">Urgent (1-2 weeks)</option>
+                                            <option value="soon">Soon (1 month)</option>
+                                            <option value="normal">Normal (3 months)</option>
+                                            <option value="flexible">Flexible (6+ months)</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select a timeline</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="teamSize" class="form-label">Team Size *</label>
+                                        <select class="form-select" id="teamSize" required>
+                                            <option value="">Select team size</option>
+                                            <option value="1-5">1-5 people</option>
+                                            <option value="6-20">6-20 people</option>
+                                            <option value="21-50">21-50 people</option>
+                                            <option value="50+">50+ people</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select team size</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="comments" class="form-label">Additional Comments</label>
+                                        <textarea class="form-control" id="comments" rows="4" placeholder="Tell us more about your project..."></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="terms" required>
+                                            <label class="form-check-label" for="terms">
+                                                I agree to the terms and conditions *
+                                            </label>
+                                        </div>
+                                        <div class="invalid-feedback">You must agree to the terms</div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button type="button" class="btn btn-secondary" onclick="previousStep('get-matched')">Previous</button>
+                                        <button type="submit" class="btn btn-success">Submit Request</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div id="contact-form" class="form-container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <h2 class="text-center mb-4">Get in Touch</h2>
+                            <form id="contact-form-element">
+                                <div class="mb-3">
+                                    <label for="contact-name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="contact-name" required>
+                                    <div class="invalid-feedback">Please enter your full name</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contact-email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="contact-email" required>
+                                    <div class="invalid-feedback">Please enter a valid email address</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contact-subject" class="form-label">Subject *</label>
+                                    <select class="form-select" id="contact-subject" required>
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="support">Technical Support</option>
+                                        <option value="sales">Sales Question</option>
+                                        <option value="partnership">Partnership Opportunity</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a subject</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contact-message" class="form-label">Message *</label>
+                                    <textarea class="form-control" id="contact-message" rows="5" required placeholder="How can we help you?"></textarea>
+                                    <div class="invalid-feedback">Please enter your message</div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="contact-copy">
+                                        <label class="form-check-label" for="contact-copy">
+                                            Send me a copy of this message
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Authentication Form -->
+        <div id="auth-form" class="form-container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <!-- Auth Tabs -->
+                            <ul class="nav nav-pills nav-justified mb-4" id="auth-tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="login-tab" data-bs-toggle="pill" data-bs-target="#login-panel" type="button">
+                                        Login
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="signup-tab" data-bs-toggle="pill" data-bs-target="#signup-panel" type="button">
+                                        Sign Up
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <!-- Tab Content -->
+                            <div class="tab-content" id="auth-content">
+                                <!-- Login Panel -->
+                                <div class="tab-pane fade show active" id="login-panel" role="tabpanel">
+                                    <h3 class="text-center mb-4">Welcome Back</h3>
+                                    <form id="login-form-element">
+                                        <div class="mb-3">
+                                            <label for="login-email" class="form-label">Email Address *</label>
+                                            <input type="email" class="form-control" id="login-email" required>
+                                            <div class="invalid-feedback">Please enter your email address</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="login-password" class="form-label">Password *</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" id="login-password" required>
+                                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('login-password')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="invalid-feedback">Please enter your password</div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="remember-me">
+                                                <label class="form-check-label" for="remember-me">
+                                                    Remember me
+                                                </label>
+                                            </div>
+                                            <a href="#" class="text-decoration-none">Forgot Password?</a>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                                    </form>
+                                </div>
+
+                                <!-- Signup Panel -->
+                                <div class="tab-pane fade" id="signup-panel" role="tabpanel">
+                                    <h3 class="text-center mb-4">Create Account</h3>
+                                    <form id="signup-form-element">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="signup-firstname" class="form-label">First Name *</label>
+                                                <input type="text" class="form-control" id="signup-firstname" required>
+                                                <div class="invalid-feedback">Please enter your first name</div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="signup-lastname" class="form-label">Last Name *</label>
+                                                <input type="text" class="form-control" id="signup-lastname" required>
+                                                <div class="invalid-feedback">Please enter your last name</div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="signup-email" class="form-label">Email Address *</label>
+                                            <input type="email" class="form-control" id="signup-email" required>
+                                            <div class="invalid-feedback">Please enter a valid email address</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="signup-password" class="form-label">Password *</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" id="signup-password" required>
+                                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('signup-password')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="form-text">Password must be at least 8 characters long</div>
+                                            <div class="invalid-feedback">Password must be at least 8 characters</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="signup-confirm-password" class="form-label">Confirm Password *</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" id="signup-confirm-password" required>
+                                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('signup-confirm-password')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="invalid-feedback">Passwords do not match</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="agree-terms" required>
+                                                <label class="form-check-label" for="agree-terms">
+                                                    I agree to the Terms of Service and Privacy Policy *
+                                                </label>
+                                            </div>
+                                            <div class="invalid-feedback">You must agree to the terms</div>
+                                        </div>
+                                        <button type="submit" class="btn btn-success w-100">Create Account</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter Form -->
+        <div id="newsletter-form" class="form-container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg bg-gradient text-white">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <h2 class="mb-3">Stay Updated</h2>
+                                <p>Get the latest news, tips, and exclusive offers delivered to your inbox</p>
+                            </div>
+                            <form id="newsletter-form-element">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="newsletter-name" class="form-label text-white">Your Name *</label>
+                                        <input type="text" class="form-control" id="newsletter-name" required>
+                                        <div class="invalid-feedback">Please enter your name</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="newsletter-email" class="form-label text-white">Email Address *</label>
+                                        <input type="email" class="form-control" id="newsletter-email" required>
+                                        <div class="invalid-feedback">Please enter a valid email address</div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-white">Select Your Interests *</label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="interest-tech" value="tech">
+                                                <label class="form-check-label text-white" for="interest-tech">Technology</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="interest-business" value="business">
+                                                <label class="form-check-label text-white" for="interest-business">Business</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="interest-design" value="design">
+                                                <label class="form-check-label text-white" for="interest-design">Design</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="interest-marketing" value="marketing">
+                                                <label class="form-check-label text-white" for="interest-marketing">Marketing</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="interest-startup" value="startup">
+                                                <label class="form-check-label text-white" for="interest-startup">Startups</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="interest-news" value="news">
+                                                <label class="form-check-label text-white" for="interest-news">Industry News</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newsletter-frequency" class="form-label text-white">Email Frequency</label>
+                                    <select class="form-select" id="newsletter-frequency">
+                                        <option value="daily">Daily</option>
+                                        <option value="weekly" selected>Weekly</option>
+                                        <option value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter-terms" required>
+                                        <label class="form-check-label text-white" for="newsletter-terms">
+                                            I agree to receive marketing emails and can unsubscribe at any time *
+                                        </label>
+                                    </div>
+                                    <div class="invalid-feedback">You must agree to receive emails</div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-light btn-lg px-5">Subscribe Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="mb-3">
+                        <i class="fas fa-check-circle fa-4x text-success"></i>
+                    </div>
+                    <h3 id="success-title">Success!</h3>
+                    <p id="success-message" class="text-muted">Your form has been submitted successfully.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Search Filters - Portfolio Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-primary text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="h2 mb-0"><i class="fas fa-search me-2"></i>Advanced Search Filters</h1>
+                    <p class="mb-0 opacity-75">Real-time filtering with multiple parameters</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex align-items-center justify-content-md-end">
+                        <span class="me-3">Results: <strong id="result-count">0</strong></span>
+                        <button class="btn btn-outline-light btn-sm" onclick="resetFilters()">
+                            <i class="fas fa-redo me-1"></i>Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="row">
+            <!-- Filters Sidebar -->
+            <aside class="col-lg-3 mb-4">
+                <div class="card shadow sticky-top" style="top: 20px;">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Filters</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Search Input -->
+                        <div class="mb-4">
+                            <label for="search-input" class="form-label">Search</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="search-input" placeholder="Search products...">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div class="mb-4">
+                            <label class="form-label">Category</label>
+                            <div class="category-filters">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cat-electronics" value="electronics">
+                                    <label class="form-check-label" for="cat-electronics">
+                                        Electronics <span class="text-muted">(45)</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cat-clothing" value="clothing">
+                                    <label class="form-check-label" for="cat-clothing">
+                                        Clothing <span class="text-muted">(32)</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cat-books" value="books">
+                                    <label class="form-check-label" for="cat-books">
+                                        Books <span class="text-muted">(28)</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cat-home" value="home">
+                                    <label class="form-check-label" for="cat-home">
+                                        Home & Garden <span class="text-muted">(19)</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cat-sports" value="sports">
+                                    <label class="form-check-label" for="cat-sports">
+                                        Sports <span class="text-muted">(15)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Range Filter -->
+                        <div class="mb-4">
+                            <label class="form-label">Price Range</label>
+                            <div class="price-range">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <input type="number" class="form-control form-control-sm" id="min-price" placeholder="Min" min="0">
+                                    <span class="align-self-center mx-2">-</span>
+                                    <input type="number" class="form-control form-control-sm" id="max-price" placeholder="Max" min="0">
+                                </div>
+                                <input type="range" class="form-range" id="price-slider" min="0" max="1000" value="1000">
+                                <div class="d-flex justify-content-between">
+                                    <small>$0</small>
+                                    <small id="price-display">$1000</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rating Filter -->
+                        <div class="mb-4">
+                            <label class="form-label">Rating</label>
+                            <div class="rating-filters">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rating" id="rating-all" value="" checked>
+                                    <label class="form-check-label" for="rating-all">
+                                        All Ratings
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rating" id="rating-4" value="4">
+                                    <label class="form-check-label" for="rating-4">
+                                        <span class="stars">★★★★☆</span> & up
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rating" id="rating-3" value="3">
+                                    <label class="form-check-label" for="rating-3">
+                                        <span class="stars">★★★☆☆</span> & up
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rating" id="rating-2" value="2">
+                                    <label class="form-check-label" for="rating-2">
+                                        <span class="stars">★★☆☆☆</span> & up
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location Filter -->
+                        <div class="mb-4">
+                            <label for="location" class="form-label">Location</label>
+                            <select class="form-select" id="location">
+                                <option value="">All Locations</option>
+                                <option value="new-york">New York</option>
+                                <option value="los-angeles">Los Angeles</option>
+                                <option value="chicago">Chicago</option>
+                                <option value="houston">Houston</option>
+                                <option value="miami">Miami</option>
+                            </select>
+                        </div>
+
+                        <!-- Availability Filter -->
+                        <div class="mb-4">
+                            <label class="form-label">Availability</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="in-stock">
+                                <label class="form-check-label" for="in-stock">
+                                    In Stock Only
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="free-shipping">
+                                <label class="form-check-label" for="free-shipping">
+                                    Free Shipping
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Active Filters -->
+                        <div class="active-filters mt-4">
+                            <h6>Active Filters</h6>
+                            <div id="active-filters-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Results Section -->
+            <section class="col-lg-9">
+                <!-- Sort and View Options -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <label class="form-label me-2 mb-0">Sort by:</label>
+                                    <select class="form-select form-select-sm" id="sort-select" style="width: auto;">
+                                        <option value="relevance">Relevance</option>
+                                        <option value="price-low">Price: Low to High</option>
+                                        <option value="price-high">Price: High to Low</option>
+                                        <option value="rating">Rating</option>
+                                        <option value="name">Name: A to Z</option>
+                                        <option value="newest">Newest First</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm active" onclick="setView('grid')" id="grid-view">
+                                        <i class="fas fa-th"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setView('list')" id="list-view">
+                                        <i class="fas fa-list"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading-state" class="text-center py-5" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Searching for products...</p>
+                </div>
+
+                <!-- No Results State -->
+                <div id="no-results" class="text-center py-5" style="display: none;">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h4>No results found</h4>
+                    <p class="text-muted">Try adjusting your filters or search terms</p>
+                    <button class="btn btn-primary" onclick="resetFilters()">Reset Filters</button>
+                </div>
+
+                <!-- Results Grid/List -->
+                <div id="results-container" class="results-grid">
+                    <!-- Results will be dynamically inserted here -->
+                </div>
+
+                <!-- Pagination -->
+                <nav id="pagination" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-product-title">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modal-product-content">
+                    <!-- Product details will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
